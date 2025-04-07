@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krmr Client - Support - Minecraft Mod Client</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 必要ならここに他のmetaタグやlinkタグを追加 -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- <img src="images/logo.png" alt="krmr Client ロゴ"> -->
+                    <h1>krmr Client</h1> <!-- ロゴ画像がない場合はテキスト -->
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Feature</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="updates.html">Update</a></li>
+                    <li><a href="support.html" class="active">Support</a></li>
+                </ul>
+            </nav>
+            <!-- スマホ用メニューボタン（JSで制御） -->
+             <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container page-title">
+            <h2>サポート & コミュニティ</h2>
+            <p>問題解決のヒントや、他のユーザー・開発者と交流できる場所です。</p>
+        </div>
+
+        <section id="faq">
+            <div class="container">
+                <h3>FAQ (よくある質問)</h3>
+                <details class="faq-item">
+                    <summary>Q: krmr Clientを入れるとクラッシュします / 起動しません。</summary>
+                    <p>A: 主な原因と確認事項です:
+                    <ul>
+                        <li><strong>前提Modの不足/バージョン違い:</strong> <a href="download.html#installation-guide">導入手順</a>にある通り、正しいバージョンの Fabric Loader と **Fabric API** (Ver X.X.X以上) が `mods` フォルダに導入されていますか？ Fabric APIの入れ忘れに注意してください。</li>
+                        <li><strong>Minecraftバージョンの不適合:</strong> krmr Client v1.0 は Minecraft 1.XX.X 用です。異なるバージョンで起動しようとしていませんか？</li>
+                        <li><strong>他のModとの競合:</strong> 他に入れているModがある場合、競合の可能性があります。<a href="#troubleshooting">トラブルシューティング</a>の競合特定手順を試してください。</li>
+                         <li><strong>インストール失敗:</strong> インストーラー(`krmr-Installer.jar`)は正しく完了しましたか？再度試してみてください。</li>
+                    </ul>
+                    解決しない場合は、<a href="#community">コミュニティ (Discord推奨)</a> でクラッシュレポート (`.minecraft/crash-reports` 内の .txt ファイル) を共有してください。
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>Q: 設定画面はどうやって開きますか？</summary>
+                     <p>A: ゲーム内でデフォルトで <strong>右Shiftキー</strong> を押すと krmr Client の設定画面が開きます。キーバインドは設定画面内で変更可能です。Mod <a href="https://www.curseforge.com/minecraft/mc-mods/modmenu" target="_blank" rel="noopener noreferrer">ModMenu</a> を導入していれば、そこからもアクセスできます。</p>                </details>
+                <details class="faq-item">
+                    <summary>Q: Forge版はありますか？ / 対応バージョンを増やせますか？</summary>
+                    <p>A: 現在 krmr Client は Fabric Mod Loader のみ対応しており、Forge版のリリース予定はありません。<a href="download.html">ダウンロードページ</a>に記載の Minecraft バージョンのみサポートしています。古いバージョンや将来のバージョンへの対応は未定です。</p>
+                </details>
+                 <details class="faq-item">
+                    <summary>Q: 特定の機能（例: フルブライト）を使ってもBANされませんか？</summary>
+                     <p>A: krmr Client の一部機能は、サーバーによってはルール違反とみなされる可能性があります。<strong style="color:darkred;">特にマルチプレイヤーサーバーで使用する場合は、必ず事前にサーバーのルールを確認してください。</strong>ルールの範囲内で自己責任での利用をお願いします。開発チームはサーバーでのアカウントBAN等に関して一切責任を負いません。</p>
+                 </details>
+                <details class="faq-item">
+                     <summary>Q: FPSがあまり上がりません。</summary>
+                     <p>A: <a href="features.html#lightweight">パフォーマンス改善</a>の効果は環境に依存します。Minecraft自体のビデオ設定を見直す、他のModとの組み合わせを確認する、krmr Client内の関連設定を調整するなどを試してください。詳細は<a href="#faq-performance">FAQ: パフォーマンスが改善されない場合の詳細</a> や <a href="support.html#troubleshooting">トラブルシューティング</a> をご覧いただくか、<a href="#community">コミュニティ</a>でご相談ください。</p>
+                 </details>
+                <details class="faq-item">
+                     <summary>Q: バグを見つけた / 機能をリクエストしたい。</summary>
+                     <p>A: ありがとうございます！ <a href="#community">コミュニティ (Discord または GitHub Issues)</a> にて報告をお願いします。バグの場合は、再現方法や環境、エラーログなどを詳しく記載いただけると助かります。</p>
+                 </details>
+             </div>
+        </section>
+
+        <section id="troubleshooting">
+            <div class="container">
+                 <h3>トラブルシューティング</h3>
+                 <h4>1. クラッシュ / 起動失敗</h4>
+                 <ul>
+                    <li><strong>まず確認:</strong> <a href="#faq">FAQ のクラッシュに関する項目</a> を確認。特に前提Mod (Fabric API) とMinecraftバージョンの整合性。</li>
+                    <li><strong>クラッシュレポート:</strong> <code>.minecraft/crash-reports</code>内の最新<code>.txt</code>ファイルを確認。原因究明の手がかりになります。</li>
+                    <li><strong>Mod競合特定:</strong> krmr Client と Fabric API 以外のModを一度全て外し、起動するか確認。起動した場合、外したModを少しずつ戻して原因を特定（二分探索が有効）。</li>
+                    <li><strong>設定リセット:</strong> <code>.minecraft/config</code>内のkrmr Client関連の設定ファイルを削除/リネームして起動を試す。（ファイル名は例: `krmrclient.json`など mod実装による）</li>
+                     <li><strong>再インストール:</strong> Fabric Loader, Fabric API, krmr Client (インストーラー経由) を一度すべてアンインストールし、手順通りに再インストールしてみる。</li>
+                 </ul>
+                <h4>2. 特定機能の問題 / 表示不具合</h4>
+                <ul>
+                    <li><strong>設定確認:</strong> 設定画面（右Shift）で機能が有効か、関連オプションが意図通りか確認。</li>
+                    <li><strong>キー競合:</strong> 他のModやMinecraft本体とキーバインドが重複していないか確認、必要なら変更。</li>
+                    <li><strong>互換性/シェーダー影響:</strong> 他の描画系Mod (Sodium等) やシェーダーパックを使用している場合、無効にして動作を確認。</li>
+                    <li><strong>最新版確認:</strong> <a href="updates.html">アップデート履歴</a> を見て、バグが修正されていないか確認。</li>
+                </ul>
+                <h4>上記で解決しない場合</h4>
+                <p>問題の詳細（何をしてどうなったか、環境、エラーメッセージ全文、スクリーンショットなど）を添えて、<a href="#community">公式Discordサーバー</a> で質問してください。</p>
+            </div>
+        </section>
+
+        <section id="community">
+            <div class="container">
+                <h3>コミュニティに参加する</h3>
+                <p>質問、バグ報告、機能要望、他のユーザーとの交流はこちらへどうぞ！</p>
+                <div class="community-links">
+                     <a href="https://discord.gg/Pdq9mRaXfE" target="_blank" rel="noopener noreferrer" class="community-link discord-link"> <!-- Discord用クラスを追加しても良い -->
+                        <img src="images/discord_icon.png" alt="Discord"> <!-- Discordアイコンパス -->
+                        <span>公式 Discordサーバー<br><small>(質問・サポートはこちらへ)</small></span>
+                    </a>
+                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="community-link github-link"> <!-- GitHub用クラスを追加しても良い -->
+                         <!-- GitHub Icon SVG -->
+                         <svg style="height: 30px; margin-right: 10px; fill: currentColor;" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.67.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                        <span>GitHub リポジトリ<br><small>(バグ報告・機能要望)</small></span>
+                    </a>
+                    <!-- 必要ならForumへのリンクも残す -->
+                    <!--
+                    <a href="[フォーラムリンク]" target="_blank" rel="noopener noreferrer" class="community-link">
+                         <img src="images/forum_icon.png" alt="フォーラム">
+                        <span>公式 フォーラム<br><small>(ディスカッション)</small></span>
+                     </a>
+                     -->
+                 </div>
+                 <h4>フィードバック</h4>
+                 <p>krmr Clientやこのサイトに関するご意見・ご感想をお待ちしています。</p>
+                 <div style="margin-top: 15px;">
+                     <a href="[アンケートフォームへのリンク]" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">匿名のアンケートはこちら</a>
+                     <span style="margin: 0 10px;">または直接</span>
+                     <a href="https://discord.gg/xtkbSM5wF5" target="_blank" rel="noopener noreferrer" class="btn btn-link" style="vertical-align: baseline;">Discordでフィードバック</a>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+             <p>© 2024 krmr Client 開発チーム. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krmr Client - Features - Minecraft Mod Client</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 必要ならここに他のmetaタグやlinkタグを追加 -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- <img src="images/logo.png" alt="krmr Client ロゴ"> -->
+                    <h1>krmr Client</h1> <!-- ロゴ画像がない場合はテキスト -->
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html" class="active">Feature</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="updates.html">Update</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </nav>
+            <!-- スマホ用メニューボタン（JSで制御） -->
+             <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container page-title">
+            <h2>krmr Client の特徴</h2>
+            <p>krmr Clientが提供する強力な機能をご紹介します。</p>
+        </div>
+
+        <section id="lightweight" class="feature-detail">
+            <div class="container">
+                <h3><img src="images/feature_icon_1.png" alt="軽量化アイコン" class="inline-icon"> パフォーマンス改善</h3>
+                <p>krmr Clientは、Minecraftの動作をよりスムーズにするための様々な最適化を施しています。特にスペックが高くないPCや、多くのModを導入している環境で効果を発揮します。</p>
+                <h4>主な最適化ポイント:</h4>
+                <ul>
+                    <li><strong>レンダリング効率化:</strong> 描画処理を見直し、GPU負荷を軽減します。</li>
+                    <li><strong>メモリ管理改善:</strong> メモリ使用量を削減し、GC（ガベージコレクション）による一時停止を減らします。</li>
+                    <li><strong>チャンク読み込み最適化:</strong> ワールドの読み込み遅延を減らし、移動時のカクつきを抑制します。</li>
+                    <li><strong>設定可能な描画オプション:</strong> 不要なアニメーションやパーティクルの表示を制限し、更なる軽量化を図れます。</li>
+                </ul>
+                <!-- 必要ならスクリーンショットや比較データ -->
+                <p><strong>パフォーマンス比較 (例):</strong></p>
+                <img src="images/performance_graph_placeholder.png" alt="パフォーマンス比較グラフ（バニラ vs krmr Client導入時）">
+                <p><small>※上記グラフは一例です。実際のパフォーマンス向上は環境により異なります。</small></p>
+            </div>
+        </section>
+
+        <section id="utility" class="feature-detail">
+            <div class="container">
+                <h3><img src="images/feature_icon_2.png" alt="ユーティリティアイコン" class="inline-icon"> 便利なユーティリティ機能</h3>
+                <p>ゲームプレイをより快適に、より効率的にするための各種ユーティリティ機能を提供します。</p>
+                <h4>モジュール例 V1.0:</h4>
+                <ul>
+                    <li><strong>カスタマイズ可能なHUD:</strong>
+                        <ul>
+                            <li>FPS、座標、時刻、現在装備しているアイテムの耐久値などを表示。</li>
+                            <li>表示項目、位置、色などを設定画面から自由に変更可能。</li>
+                        </ul>
+                    </li>
+                    <li><strong>インベントリ補助:</strong>
+                        <ul>
+                            <li>マウスホイールでのアイテム移動など、基本的な操作補助。 ※v1.0時点</li>
+                            <!-- <li>(将来的に) インベントリ自動整理 / アイテム補充 機能を追加予定。</li> -->
+                        </ul>
+                    </li>
+                     <li><strong>見た目・操作補助:</strong>
+                         <ul>
+                            <li>フルブライト: 暗い場所を明るく表示します。<strong style="color:orange;">※サーバーによっては禁止の場合あり。</strong></li>
+                            <li>オートスプリント: 自動でダッシュ状態を維持します。</li>
+                            <!-- <li>(その他 v1.0 時点で実装されている機能)</li> -->
+                         </ul>
+                    </li>
+                    <li><strong>ミニマップ (基本的な機能):</strong> ※v1.0時点
+                        <ul>
+                            <li>周辺の地形を表示。</li>
+                             <li>(将来的に) ウェイポイント、エンティティ表示などを追加予定。</li>
+                        </ul>
+                    </li>
+                </ul>
+                 <img src="images/utility_screenshot.jpg" alt="ユーティリティ機能のスクリーンショット">
+                 <p><strong style="color:darkred;">注意:</strong> 一部のユーティリティ機能（特にフルブライトなど）は、マルチプレイヤーサーバーのルールによっては使用が禁止されている場合があります。サーバーのルールを確認し、自己責任で使用してください。</p>
+            </div>
+        </section>
+
+         <section id="customization" class="feature-detail">
+            <div class="container">
+                <h3>高度なカスタマイズ性</h3>
+                <p>krmr Client は、各機能をプレイヤーの好みに合わせて細かく調整できる設定画面（デフォルト: 右Shiftキー）を提供します。</p>
+                <ul>
+                    <li><strong>モジュールごとの有効/無効化:</strong> 使わない機能はOFFにして、リソース消費を抑えられます。</li>
+                    <li><strong>詳細設定:</strong> HUDの表示内容や見た目、各機能の動作などを細かく設定可能です。</li>
+                    <li><strong>キーバインド変更:</strong> 各機能の呼び出しキーを自由に変更できます。</li>
+                    <li><strong>ModMenu連携:</strong> <a href="https://www.curseforge.com/minecraft/mc-mods/modmenu" target="_blank" rel="noopener noreferrer">ModMenu</a> に対応しており、ゲーム内Modリストから簡単に設定画面を開けます。</li>
+                 </ul>
+                 <img src="images/mod_settings_screenshot_placeholder.png" alt="krmr Client 設定画面のスクリーンショット">
+                 <p>設定画面はデフォルトで <strong>右Shiftキー</strong> を押すことで開けます。</p>
+            </div>
+        </section>
+        <!-- 他の機能モジュールも同様に追加 -->
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 krmr Client 開発チーム. All rights reserved.</p>
+            <!-- 必要なら追加のフッターリンク -->
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

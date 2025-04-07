@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krmr Client - Updates - Minecraft Mod Client</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 必要ならここに他のmetaタグやlinkタグを追加 -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- <img src="images/logo.png" alt="krmr Client ロゴ"> -->
+                    <h1>krmr Client</h1> <!-- ロゴ画像がない場合はテキスト -->
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Feature</a></li>
+                    <li><a href="download.html">Download</a></li>
+                    <li><a href="updates.html" class="active">Update</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </nav>
+            <!-- スマホ用メニューボタン（JSで制御） -->
+             <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container page-title">
+            <h2>アップデート履歴 (Changelog)</h2>
+            <p>krmr Client の更新情報です。最新の更新が一番上に表示されます。</p>
+        </div>
+
+        <section class="update-log">
+            <div class="container">
+                <!-- 新しいアップデートを上に追加していく -->
+                <article class="update-entry" id="v1.0"> <!-- IDをv1.0に -->
+                    <h3><a href="#v1.0">バージョン 1.0</a> <span class="release-date">(2024/XX/XX)</span></h3> <!-- リリース日を修正 -->
+                    <p>対応 Minecraft バージョン: 1.21</p> <!-- 対応バージョンを修正 -->
+
+                    <h4>✨ 初期リリース！主な機能</h4>
+                    <ul>
+                        <li>**パフォーマンス改善:** レンダリング最適化、メモリ管理改善など。</li>
+                        <li>**カスタマイズ可能HUD:** FPS、座標、装備耐久値などを表示。</li>
+                        <li>**AntiAFK:** AFK検知回避、スペクテイターモード検知。</li>
+                        <li>**Player:** Nofall、Flight、オートスプリント。</li>
+                        <li>**Render:** ESP、Tracker、フルブライト。</li>
+                        <li>**設定画面:** 各モジュールのON/OFF、詳細設定、キーバインド変更。</li>
+                        <li>**前提Mod:** Fabric Loader, Fabric API (Ver 1.102.0以上)。</li> <!-- Fabric APIバージョン指定 -->
+                        <li>インストーラー形式での提供。</li>
+                    </ul>
+
+                    <h4>既知の問題</h4>
+                    <ul>
+                        <li>Exploitはまだ基本機能のみです（今後のアップデートで拡張予定）。</li>
+                        <li>一部Modとの互換性はまだテスト中です。</li>
+                        <li>特定の環境下でパフォーマンス改善効果が薄い場合があります。</li>
+                    </ul>
+
+                    <div class="download-link-update">
+                       <a href="files/krmr-Installer.jar" class="btn btn-secondary" download="krmr-Installer.jar">バージョン 1.0 をダウンロード (Installer .jar)</a>
+                    </div>
+                </article>
+
+                <hr> <!-- 必要なら過去バージョンをここに追加 -->
+
+                <!--
+                 <article class="update-entry" id="v0.x.x">
+                     <h3>Beta/Alpha バージョン ... </h3>
+                 </article>
+                 -->
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 krmr Client 開発チーム. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krmr Client - Download - Minecraft Mod Client</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 必要ならここに他のmetaタグやlinkタグを追加 -->
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <!-- <img src="images/logo.png" alt="krmr Client ロゴ"> -->
+                    <h1>krmr Client</h1> <!-- ロゴ画像がない場合はテキスト -->
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Feature</a></li>
+                    <li><a href="download.html" class="active">Download</a></li>
+                    <li><a href="updates.html">Update</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </nav>
+            <!-- スマホ用メニューボタン（JSで制御） -->
+             <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container page-title">
+            <h2>ダウンロード & 導入手順</h2>
+            <p>最新版の krmr Client をダウンロードして導入しましょう。</p>
+        </div>
+
+        <section class="download-links">
+            <div class="container">
+                <h3><span style="color: var(--primary-color);">推奨</span> 最新安定版 (Latest Stable Release)</h3>
+                <div class="download-item">
+                    <div>
+                        <strong>バージョン 1.0</strong> (Minecraft 1.XX.X 対応) <br> <!-- 必ず実際の対応バージョンに書き換え！ -->
+                        <span class="release-date">リリース日: 2024/XX/XX</span> <!-- 必ず実際の日付に書き換え！ -->
+                    </div>
+                     <!-- パスは環境に合わせて変更してください (例: /files/krmr-Installer.jar) -->
+                    <a href="files/krmr-Installer.jar" class="btn btn-primary" download="krmr-Installer.jar">ダウンロード (Installer .jar)</a>
+                </div>
+                <p><a href="updates.html#v1.0">バージョン1.0の変更点を見る</a></p>
+                <p><strong>注意:</strong> これはインストーラー形式です。下記の手順に従ってインストールしてください。</p>
+            </div>
+        </section>
+
+        <!-- Version 1.0時点では過去バージョンは不要
+        <section class="download-links older-versions">
+             <div class="container">
+                 <h3>旧バージョン (Older Versions)</h3>
+                 <ul>
+                    <li><a href="#" download>バージョン X.Y.Z</a> (Minecraft A.B.C 対応)...</li>
+                 </ul>
+                 <p style="margin-top: 15px;"><a href="updates.html">全てのバージョンの変更履歴を見る »</a></p>
+           </div>
+        </section>
+        -->
+
+        <section class="installation-guide">
+            <div class="container">
+                <h3>導入手順 (Fabric)</h3>
+                <h4>1. Fabric Loader の準備</h4>
+                 <ol>
+                    <li>Minecraft Java Edition をインストールしていることを確認します。</li>
+                    <li><a href="https://fabricmc.net/use/installer/" target="_blank" rel="noopener noreferrer">Fabric Loader 公式サイト</a>から **Installer (.jar)** をダウンロードします。</li>
+                    <li>ダウンロードした Fabric Installer を実行します。</li>
+                     <li>「Client」タブで、「Minecraft Version」に krmr Client が対応している **Minecraft バージョン (1.XX.X)** を選択します。(※必ず正しいバージョンを指定してください！) Loader Version は最新を選択し、「Install」をクリックします。</li>
+                     <li>"Successfully installed..." と表示されたら成功です。</li>
+                    <li>Minecraft Launcher を起動し、「起動構成」タブに "fabric-loader-1.XX.X" というプロファイルが作成されていることを確認します。</li>
+                    <li>一度、作成した Fabric プロファイルで Minecraft を起動し、タイトル画面まで進んだら終了します。（必要なフォルダが生成されます）</li>
+                 </ol>
+
+                <h4>2. krmr Client のインストール</h4>
+                <ol>
+                    <li>上でダウンロードしたインストーラー <code>krmr-Installer.jar</code> を実行（ダブルクリック）します。</li>
+                    <li>インストーラーの指示に従い、インストール先の Minecraft ディレクトリ (.minecraft) が正しいことを確認して「Install」を実行します。</li>
+                    <li> "Installation successful" のようなメッセージが表示されれば完了です。</li>
+                    <li><strong>(必須)前提Mod:</strong> このクライアントは <a href="[Fabric API のダウンロードページリンク]" target="_blank" rel="noopener noreferrer">Fabric API</a> (バージョン X.X.X 以上 - ※必ず対応バージョンを指定！) を必要とします。対応するバージョンのFabric APIの `.jar` ファイルをダウンロードしてください。</li>
+                    <li>OS に応じて Minecraft の <code>mods</code> フォルダを開きます:
+                         <ul>
+                            <li><strong>Windows:</strong> <code>%appdata%\.minecraft\mods</code></li>
+                            <li><strong>macOS:</strong> <code>~/Library/Application Support/minecraft/mods</code></li>
+                            <li><strong>Linux:</strong> <code>~/.minecraft/mods</code></li>
+                          </ul>
+                        <em>※ `mods` フォルダがない場合は作成してください。</em>
+                     </li>
+                     <li>ダウンロードした **Fabric API の `.jar` ファイル** を、この `mods` フォルダの中に入れます。（krmr Client 本体はインストーラーにより適切な場所に配置されるため、modsフォルダに入れる必要はありません。）</li>
+                  </ol>
+
+                 <h4>3. 起動と確認</h4>
+                 <ol>
+                     <li>Minecraft Launcher を起動します。</li>
+                    <li>起動構成で Fabric プロファイル (例: "fabric-loader-1.XX.X") が選択されていることを確認します。</li>
+                    <li>「プレイ」ボタンでゲームを起動します。</li>
+                    <li>タイトル画面に "krmr Client" の表示が出れば成功です。エラーが出る場合は <a href="support.html#troubleshooting">トラブルシューティング</a> へ。</li>
+                    <li>ゲーム内でデフォルト設定キー [右Shiftキー] を押して krmr Client の設定画面が開くか確認してください。</li>
+                 </ol>
+
+                <h4>システム要件:</h4>
+                 <ul>
+                    <li>Minecraft Java Edition: バージョン 1.XX.X (※必ず対応バージョンを指定！)</li>
+                    <li>Fabric Loader</li>
+                    <li>Fabric API: バージョン X.X.X 以上 (※必ず対応バージョンを指定！)</li>
+                    <li>Java: Minecraft が要求するバージョン</li>
+                    <li>RAM: 最低 4GB 推奨</li>
+                 </ul>
+
+                 <h4>他のModとの互換性:</h4>
+                <p>krmr Clientは多くのFabric Modと互換性がありますが、問題が発生する可能性はあります。<a href="support.html#troubleshooting">トラブルシューティング</a>や<a href="support.html#community">コミュニティ</a>を参照してください。</p>
+                 <ul>
+                     <li>Sodium / Iris: 互換性テスト中 / 限定的サポート (v1.0)</li>
+                    <li>ModMenu: 推奨</li>
+                     <li>[他の主要Mod名]: [互換性情報]</li>
+                 </ul>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 krmr Client 開発チーム. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

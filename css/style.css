@@ -1,0 +1,873 @@
+/* --- 基本設定 & カラーパレット --- */
+:root {
+    --bg-dark: #1A2337; /* ダークネイビー */
+    --bg-dark-accent: #282828; /* ダークグレー (カード等に使用) */
+    --bg-light: #f8f9fa; /* (ほぼ白) 明るいテーマ用だが今回は未使用 */
+    --text-dark: #EAEAEA; /* 暗い背景上の標準テキスト */
+    --text-muted: #a0a0a0; /* 少し薄いテキスト */
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --accent-blue: #42A5F5;
+    --accent-green: #66BB6A;
+    --link-color: var(--accent-blue); /* 標準リンク色 */
+    --link-hover-color: var(--gold); /* リンクホバー色 */
+    --border-color: #444; /* 区切り線などの色 */
+
+    /* グラデーション */
+    --gradient-bg: linear-gradient(170deg, var(--bg-dark) 0%, #111827 100%);
+    --gradient-gold: linear-gradient(45deg, var(--gold) 0%, #f9b234 100%);
+    --gradient-green: linear-gradient(45deg, var(--accent-green) 0%, #81C784 100%);
+    --gradient-blue: linear-gradient(45deg, var(--accent-blue) 0%, #64B5F6 100%);
+
+    /* フォント */
+    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-headings: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 見出し用 */
+
+    /* その他 */
+    --container-width: 1000px;
+    --base-font-size: 16px;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 25px; /* ボタンに使ったり */
+    --shadow-sm: 0 2px 5px rgba(0,0,0,0.2);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.3);
+    --shadow-lg: 0 8px 25px rgba(0,0,0,0.4);
+    --transition-speed: 0.3s;
+}
+
+/* --- グローバルスタイル --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.7;
+    background: var(--bg-dark); /* ベースはダークネイビー */
+    /* 背景グラデーションの適用 グラデーションを全体に敷く場合 */
+    /* background: var(--gradient-bg) no-repeat center center fixed;
+    background-size: cover; */
+    color: var(--text-dark);
+    font-size: var(--base-font-size);
+    overflow-x: hidden; /* 横スクロール防止 */
+}
+
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings);
+    font-weight: 700; /* 太字 */
+    margin-bottom: 0.8em;
+    line-height: 1.3;
+    color: var(--silver); /* 見出しはシルバーを基調 */
+}
+h1 { font-size: clamp(2rem, 5vw, 2.8rem); color: var(--gold); } /* clampでレスポンシブ対応 */
+h2 { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-top: 1.5em; color: var(--silver);} /* 最初のh2以外のマージン */
+h3 { font-size: clamp(1.4rem, 3.5vw, 1.7rem); color: var( --silver); }
+h4 { font-size: clamp(1.1rem, 3vw, 1.3rem); color: var(--text-muted); } /* 少し控えめに */
+
+p {
+    margin-bottom: 1em;
+}
+
+ul, ol {
+    margin-bottom: 1em;
+    padding-left: 25px;
+}
+li {
+     margin-bottom: 0.5em;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--border-radius-sm); /* 画像に少し丸み */
+}
+
+strong {
+    color: var(--gold); /* 強調テキストはゴールド */
+    font-weight: 600;
+}
+
+blockquote {
+     margin: 1.5em 0;
+     padding: 1em 1.5em;
+     border-left: 4px solid var(--gold);
+     background-color: rgba(255, 255, 255, 0.05); /* 少し背景色 */
+     font-style: italic;
+     color: var(--text-muted);
+}
+blockquote p { margin-bottom: 0; }
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 2em 0;
+}
+
+code, pre {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.2em 0.4em;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9em;
+}
+
+pre {
+    padding: 1em;
+    overflow-x: auto; /* 長いコードはスクロール */
+}
+
+/* --- 基本リンクスタイル --- */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    position: relative; /* アニメーション用 */
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: none; /* 基本的には下線不要 */
+}
+/* 下線アニメーション (オプション) */
+a:not(.btn)::after { /* ボタン以外のリンクに適用 */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1.5px; /* 少し太めに */
+    bottom: -3px; /* テキスト下の位置 */
+    left: 0;
+    background-color: var(--link-hover-color);
+    transition: width var(--transition-speed) ease;
+}
+a:not(.btn):hover::after {
+    width: 100%;
+}
+/* 特定箇所のリンクでは下線が邪魔な場合、クラスで無効化も可能 */
+.no-underline-hover::after { display: none !important; }
+
+
+/* --- ボタン共通スタイル --- */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border: none;
+    border-radius: var(--border-radius-lg); /* 丸みのあるボタン */
+    font-family: var(--font-headings);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase; /* 大文字化 */
+    letter-spacing: 1px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease,
+                background var(--transition-speed) ease,
+                opacity var(--transition-speed) ease;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden; /* ホバーエフェクト用 */
+    z-index: 1;
+    margin: 5px;
+}
+/* ボタンホバー基本効果 */
+.btn:hover, .btn:focus {
+    transform: translateY(-3px) scale(1.03); /* 少し浮き上がり拡大 */
+    box-shadow: var(--shadow-lg);
+    outline: none; /* フォーカス時の輪郭を消す (CSSで代替) */
+    opacity: 0.95; /* 若干透明に */
+    text-decoration: none; /* ホバー時も下線不要 */
+}
+.btn:active {
+     transform: translateY(-1px) scale(1.01); /* クリック時の沈み込み */
+     box-shadow: var(--shadow-md);
+}
+/* ボタン内テキストは下線が出ないように */
+.btn::after { display: none !important; }
+
+/* --- ボタン種類別スタイル --- */
+/* プライマリボタン (例: ダウンロード): 緑系グラデ */
+.btn-primary {
+    background: var(--gradient-green);
+    color: #fff; /* 白文字 */
+}
+.btn-primary:hover, .btn-primary:focus {
+    /* グラデーションを逆にするなど */
+    background: linear-gradient(45deg, #81C784 0%, var(--accent-green) 100%);
+}
+
+/* セカンダリボタン (例: 詳細、コミュニティボタン): 青系グラデ */
+.btn-secondary {
+    background: var(--gradient-blue);
+    color: #fff; /* 白文字 */
+}
+.btn-secondary:hover, .btn-secondary:focus {
+    background: linear-gradient(45deg, #64B5F6 0%, var(--accent-blue) 100%);
+}
+
+/* CTA用 Mainボタン (例: ヒーローセクション): ゴールド系グラデ */
+.btn-gold { /* btn-primary の代わりにこれを使用する場合 */
+     background: var(--gradient-gold);
+     color: #222; /* 黒文字 */
+}
+.btn-gold:hover, .btn-gold:focus {
+   background: linear-gradient(45deg, #f9b234 0%, var(--gold) 100%);
+}
+/* ページトップのCTAは目立つように大サイズも用意 */
+.btn-large {
+    font-size: 1.1rem;
+    padding: 15px 35px;
+}
+
+/* アウトラインボタン: クールな印象 */
+.btn-outline-silver {
+    background: transparent;
+    border: 2px solid var(--silver);
+    color: var(--silver);
+    box-shadow: none; /* アウトラインには影なし */
+    padding: 10px 26px; /* 通常ボタンより少しだけ小さく */
+}
+.btn-outline-silver:hover, .btn-outline-silver:focus {
+    background-color: var(--silver);
+    color: var(--bg-dark); /* 反転 */
+    transform: translateY(-2px); /* 控えめな浮き上がり */
+    box-shadow: 0 3px 8px rgba(192, 192, 192, 0.3); /* シルバー系の影 */
+}
+.btn-outline-gold {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    box-shadow: none;
+    padding: 10px 26px;
+}
+.btn-outline-gold:hover, .btn-outline-gold:focus {
+    background-color: var(--gold);
+    color: var(--bg-dark);
+     transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(255, 215, 0, 0.3);
+}
+
+/* download属性付きリンクの見た目をボタンにする場合 */
+a[download].btn { /* 例 download.html のJARファイルリンクなど */
+   /* 必要ならスタイルをここに定義 */
+}
+
+
+/* --- ヘッダー --- */
+header {
+    background: rgba(26, 35, 55, 0.8); /* 背景を少し透過させる場合（ボディがグラデの場合など） */
+    /* background: var(--bg-dark); 透過させない場合 */
+    backdrop-filter: blur(10px); /* すりガラス効果 */
+    color: var(--text-dark);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3); /* ゴールドの薄い区切り線 */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+     flex-wrap: wrap; /* レスポンシブ対応のため */
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--gold); /* ロゴは目立たせる */
+     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+     letter-spacing: 1px;
+}
+header .logo a {
+    color: var(--gold);
+    text-decoration: none;
+}
+header .logo a:hover { /* ロゴはホバーエフェクト不要な場合も */
+   color: var(--gold);
+}
+header .logo a::after { display: none; } /* ロゴは下線アニメーション不要 */
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 25px;
+    margin-bottom: 0; /* リスト下のマージンをリセット */
+}
+/* ヘッダーメニュー項目のリンクスタイル */
+header nav ul li a {
+    color: var(--silver); /* 控えめな色 */
+    padding: 8px 12px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: var(--border-radius-sm);
+     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+header nav ul li a:hover {
+    color: var(--gold); /* ホバーでゴールド */
+    background-color: rgba(255, 255, 255, 0.1); /* 薄い背景 */
+    text-decoration: none;
+}
+header nav ul li a::after { display: none; } /* 下線アニメーション不要 */
+
+/* アクティブなナビゲーションリンク */
+header nav ul li a.active {
+    color: var(--gold);
+    font-weight: 700; /* 太字に */
+    background-color: rgba(255, 215, 0, 0.1); /* ゴールド系の薄い背景 */
+}
+
+/* --- メインコンテンツ --- */
+main {
+    padding: 50px 0;
+}
+
+.page-title {
+   padding: 40px 0;
+   text-align: center;
+   margin-bottom: 50px;
+   border-bottom: 1px solid var(--border-color);
+   /* background: rgba(0,0,0,0.1); 背景グラデーションを使わない場合のタイトル背景 */
+}
+.page-title h2 {
+   margin-bottom: 0.2em;
+   color: var(--gold); /* メインタイトルもゴールド */
+}
+.page-title p {
+   color: var(--text-muted);
+   font-size: 1.1rem;
+   max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- セクション共通設定 --- */
+section {
+    padding: 40px 0;
+     margin-bottom: 30px; /* セクション間のスペース */
+}
+
+/* --- 各ページの要素スタイル調整 --- */
+
+/* ホーム: ヒーロー */
+.hero {
+    text-align: center;
+    padding: 80px 0 60px 0; /* 上に余白を多めに */
+    background: var(--gradient-bg); /* ヒーローに背景グラデ */
+     margin-bottom: 50px; /* 下のマージン調整 */
+     border-radius: 0 0 var(--border-radius-md) var(--border-radius-md); /* 下部に少し丸み */
+     box-shadow: var(--shadow-md);
+}
+.hero h2 {
+   font-size: clamp(2.5rem, 6vw, 3.5rem);
+   color: var(--gold);
+   text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    margin-bottom: 0.4em;
+}
+.hero p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--silver);
+    margin-bottom: 1.8em;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hero .hero-visual img, .hero .hero-visual video {
+    max-width: 60%; /* 少し小さめに */
+    margin: 30px auto;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid rgba(255, 215, 0, 0.3); /* 細いゴールドの枠 */
+}
+/* ヒーローの主要CTAボタンは Gold ボタンを使うと良い */
+/* <a href="download.html" class="btn btn-gold btn-large">...</a> */
+
+/* ホーム: 特徴概要 */
+.features-overview { background-color: var(--bg-dark-accent); padding: 50px 0; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); }
+.features-overview h2 { text-align: center; color: var(--silver); }
+.feature-list {
+    display: grid; /* Gridレイアウトに変更 */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* レスポンシブなグリッド */
+    gap: 30px;
+    margin-top: 30px;
+}
+.feature-item {
+    background: lighten(var(--bg-dark-accent), 5%);
+    padding: 30px 25px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    border: 1px solid var(--border-color);
+     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.feature-item:hover {
+   transform: translateY(-5px);
+   box-shadow: var(--shadow-md);
+}
+.feature-item img { /* アイコン */
+   max-height: 60px; /* 少し大きく */
+   margin: 0 auto 20px auto;
+   filter: grayscale(30%) contrast(110%); /* アイコンに少しエフェクト */
+}
+.feature-item h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--accent-blue); /* 特徴タイトルは青系 */
+    font-size: 1.3rem;
+}
+.feature-item p { color: var(--text-muted); }
+.feature-item a { font-weight: 600; font-size: 0.9rem; } /* 詳細を見るリンクを強調 */
+
+/* ホーム: 最新情報 */
+.latest-news { padding: 50px 0; border-top: 1px solid var(--border-color); }
+.latest-news h2 { text-align: center; }
+.latest-news article {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px dashed var(--border-color); /* 点線に変更 */
+  padding-left: 15px;
+   position: relative;
+}
+.latest-news article:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+/* 記事の先頭にマーク */
+.latest-news article::before {
+   content: '>'; /* または他のアイコン文字 */
+   position: absolute;
+   left: 0;
+   top: 0.1em; /* 見出しの高さに */
+   color: var(--gold);
+   font-weight: bold;
+   font-size: 1.2em;
+}
+.latest-news h3 {
+  margin-bottom: 0.5em;
+  color: var(--silver);
+  font-size: 1.3rem;
+}
+.latest-news .release-date {
+   font-size: 0.9em;
+   color: var(--text-muted);
+   margin-left: 10px;
+}
+.latest-news a { margin-right: 10px; font-size: 0.9rem; }
+
+/* ホーム: 使用者の声 */
+.testimonials { background-color: var(--bg-dark-accent); padding: 50px 0; border-radius: var(--border-radius-md); }
+.testimonials h2 { text-align: center; color: var(--silver); }
+.testimonial-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+.testimonial-item {
+    background: lighten(var(--bg-dark-accent), 5%);
+    padding: 25px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex; /* Flexboxに変更 */
+    flex-direction: column; /* 内容を縦に積む */
+}
+.testimonial-author { display: flex; align-items: center; margin-bottom: 15px; }
+.testimonial-author .author-icon { max-width: 45px; border-radius: 50%; margin-right: 15px; border: 2px solid var(--gold); }
+.testimonial-author .author-name { display: block; font-weight: bold; color: var(--silver); font-size: 1.05em; }
+.testimonial-author .author-role { display: block; font-size: 0.85em; color: var(--text-muted); }
+.testimonial-item blockquote { margin: auto 0 0 0; /* blockquoteを下に配置 */ font-size: 0.95rem; padding-top: 15px; margin-top: 15px; border-top: 1px solid var(--border-color); border-left: none;}
+
+/* 機能紹介ページ */
+.feature-detail {
+  padding: 30px;
+  margin-bottom: 40px;
+  background: var(--bg-dark-accent);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+/* 機能セクションのタイトル */
+.feature-detail h3 {
+  color: var(--accent-blue); /* 機能詳細のタイトルも青系 */
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--gold); /* 下線で強調 */
+   display: inline-block; /* 下線がテキスト幅に */
+   margin-bottom: 15px;
+}
+.feature-detail .inline-icon {
+  max-height: 1.1em;
+  vertical-align: -0.15em; /* 位置微調整 */
+  margin-right: 10px;
+  filter: brightness(1.2);
+}
+.feature-detail img { margin: 20px 0; box-shadow: var(--shadow-sm); }
+
+/* ダウンロードページ */
+.download-links { margin-bottom: 40px; }
+.download-item {
+    background: lighten(var(--bg-dark-accent), 5%);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px; /* 要素間の隙間 */
+     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.download-item:hover { transform: scale(1.02); box-shadow: var(--shadow-md); } /* 少しリッチなホバー */
+.download-item strong { color: var(--silver); font-size: 1.1em; }
+.download-item .release-date { font-size: 0.9em; color: var(--text-muted); }
+.download-item a.btn { margin: 0; } /* ボタンのマージン削除 */
+/* ダウンロードページの過去バージョンリスト */
+.older-versions ul { list-style: none; padding-left: 0; }
+.older-versions li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+.older-versions li a { margin-right: 10px; }
+.older-versions li small { color: var(--text-muted);}
+
+/* 導入手順 */
+.installation-guide {
+ background: var(--bg-dark-accent);
+ padding: 30px;
+ border-radius: var(--border-radius-md);
+ box-shadow: var(--shadow-md);
+ border: 1px solid var(--border-color);
+}
+.installation-guide h3 { color: var(--gold); padding-bottom: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color);}
+.installation-guide h4 { margin-top: 1.5em; color: var(--silver); }
+.installation-guide ol { /* 番号付きリストのスタイル */
+    list-style: none;
+    counter-reset: install-counter;
+    padding-left: 0;
+}
+.installation-guide ol li {
+    counter-increment: install-counter;
+    margin-bottom: 1em;
+    position: relative;
+    padding-left: 35px; /* 数字のスペース */
+}
+.installation-guide ol li::before { /* 数字をデザイン */
+    content: counter(install-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: var(--gold);
+    color: var(--bg-dark);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    line-height: 1;
+}
+.installation-guide ul li { list-style: disc; }
+
+/* アップデートページ */
+.update-log { /* コンテナ */ }
+.update-entry {
+    background: var(--bg-dark-accent);
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden; /* 装飾用 */
+}
+/* 最新版のエントリを目立たせる 装飾用のバー */
+.update-entry:first-child::before {
+   content: '';
+   position: absolute;
+   left: 0;
+   top: 0;
+   bottom: 0;
+   width: 6px;
+   background: var(--gradient-gold);
+}
+.update-entry:first-child { padding-left: 40px; } /* 上記バーとのスペース */
+.update-entry h3 { /* バージョン番号 */
+   margin-bottom: 0.4em;
+   color: var(--gold);
+   font-size: 1.6rem;
+}
+.update-entry h3 a { color: inherit; }
+.update-entry h3 a:hover::after { display: none; }
+.update-entry > p { /* 対応MCバージョン */
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5em;
+}
+.update-entry h4 { /* 新機能、バグ修正など */
+   margin-top: 1.8em;
+   margin-bottom: 0.8em;
+   padding-left: 12px;
+   border-left: 3px solid var(--accent-blue);
+   color: var(--silver);
+   font-size: 1.15rem;
+}
+.update-entry h4:first-of-type { margin-top: 0; }
+.update-entry ul { list-style: disc; margin-left: 20px; }
+.update-entry li { margin-bottom: 8px; color: var(--text-dark); }
+.update-entry .download-link-update {
+   margin-top: 25px;
+   text-align: right; /* 右寄せ */
+}
+/* ダウンロードボタンをアウトラインに */
+.update-entry .download-link-update .btn {
+     /* background: transparent;
+     border: 1px solid var(--accent-blue);
+     color: var(--accent-blue); */
+     /* アウトライン Gold を使う場合 */
+     background: transparent;
+     border: 1px solid var(--gold);
+     color: var(--gold);
+     box-shadow: none;
+     font-size: 0.9rem;
+     padding: 8px 18px;
+}
+.update-entry .download-link-update .btn:hover {
+     /* background: var(--accent-blue);
+     color: #fff; */
+      /* アウトライン Gold を使う場合 */
+      background: var(--gold);
+      color: var(--bg-dark);
+      box-shadow: 0 2px 5px rgba(255, 215, 0, 0.3);
+      transform: translate(0); /* 浮き上がりさせない */
+}
+
+/* サポートページ */
+#faq { padding: 30px; background: var(--bg-dark-accent); border-radius: var(--border-radius-md); margin-bottom: 40px; box-shadow: var(--shadow-md); }
+#faq h3 { text-align: center; color: var(--gold); margin-bottom: 25px;}
+.faq-item {
+    background: lighten(var(--bg-dark-accent), 5%);
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+     overflow: hidden; /* アニメーション用 */
+}
+.faq-item summary {
+    padding: 18px 25px;
+    font-weight: 600;
+    color: var(--silver);
+    cursor: pointer;
+    position: relative;
+    transition: background-color var(--transition-speed) ease;
+    list-style: none; /* Webkitの標準三角を消す */
+}
+.faq-item summary::-webkit-details-marker { display: none; } /* 同上 */
+
+.faq-item summary:hover {
+   background-color: rgba(255, 255, 255, 0.05);
+}
+.faq-item summary::after { /* 矢印アイコン */
+    content: '+'; /* Open: '-' */
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    color: var(--gold);
+    transition: transform var(--transition-speed) ease;
+    font-weight: 300;
+}
+.faq-item[open] summary {
+   background-color: rgba(255, 215, 0, 0.08); /* 開いているときはゴールド背景 */
+   color: var(--gold);
+}
+.faq-item[open] summary::after {
+    content: '−'; /* 閉じるアイコン */
+     transform: translateY(-50%) rotate(90deg); /* 回転アニメーション */
+}
+.faq-item div, .faq-item p { /* detailsの中のコンテンツ */
+    padding: 0 25px 20px 25px;
+    color: var(--text-muted);
+     animation: faq-open 0.4s ease-out; /* 開くアニメーション */
+}
+@keyframes faq-open { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+/* FAQ内のリストなど */
+.faq-item ul { padding-left: 20px; margin-top: 0.5em;}
+.faq-item li { color: var(--text-muted); }
+
+/* トラブルシューティング */
+#troubleshooting { padding: 30px; background: var(--bg-dark-accent); border-radius: var(--border-radius-md); margin-bottom: 40px; box-shadow: var(--shadow-md);}
+#troubleshooting h3 { text-align: center; color: var(--gold); margin-bottom: 25px; }
+#troubleshooting h4 { margin-top: 1.8em; color: var(--silver); border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
+#troubleshooting ul { padding-left: 20px; list-style: disc;}
+
+/* コミュニティ・サポートリンク */
+#community { padding: 50px 0; text-align:center;} /* 区画なしでページ下部 */
+#community h3 { color: var(--gold); margin-bottom: 15px; text-align: center;}
+#community > .container > p { color: var(--text-muted); margin-bottom: 30px; }
+.community-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.community-link {
+  display: flex;
+  align-items: center;
+  background: var(--bg-dark-accent);
+  padding: 20px 25px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
+   min-width: 280px; /* 最小幅 */
+   text-align: left;
+   border: 1px solid var(--border-color);
+}
+.community-link:hover {
+   transform: translateY(-5px) scale(1.02);
+   box-shadow: var(--shadow-lg);
+   background-color: lighten(var(--bg-dark-accent), 3%);
+   color: var(--link-hover-color); /* SVGの色も変わることあり */
+   text-decoration: none;
+}
+.community-link::after { display: none; } /* 下線不要 */
+.community-link img, .community-link svg {
+   max-height: 35px;
+   width: 35px; /* SVG用 */
+   margin-right: 15px;
+   flex-shrink: 0; /* 縮まないように */
+}
+.community-link span {
+    color: var(--silver);
+    font-weight: 500;
+}
+.community-link span small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.85em;
+    margin-top: 3px;
+}
+/* Discord / GitHub リンクの色調整 (親のホバーに連動させるのは少し難しい） */
+/* .discord-link:hover { color: #7289DA; }
+/* .github-link:hover { color: #FFF; } */
+
+ /* フィードバック セクション */
+ #community h4 { margin-top: 2em; color: var(--silver); }
+ #community .btn-link { color: var(--accent-blue); box-shadow: none; background: none; padding: 0; margin: 0 5px; text-transform: none; letter-spacing: normal; font-weight: 500;}
+ #community .btn-link:hover { color: var(--gold); transform: none; box-shadow: none; text-decoration: none; } /* 通常のリンクホバーに類似 */
+ #community .btn-link::after { bottom: 0px;} /* 下線の位置調整 */
+ #community .btn-secondary { margin-top: 10px; } /* アンケートボタン */
+
+/* --- フッター --- */
+footer {
+    background: var(--bg-dark-accent);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px; /* mainとの間の余白 */
+    font-size: 0.9em;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+footer p { margin-bottom: 0; }
+/* フッター内のリンクなど */
+footer a {
+  color: var(--silver);
+}
+footer a:hover {
+  color: var(--gold);
+}
+
+
+/* --- レスポンシブデザイン --- */
+.menu-toggle {
+   display: none; /* デフォルト非表示 */
+   background: none;
+   border: 1px solid var(--silver);
+   color: var(--silver);
+   font-size: 1.8rem;
+   cursor: pointer;
+   padding: 5px 12px;
+   border-radius: var(--border-radius-sm);
+     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+.menu-toggle:hover {
+   background-color: rgba(255, 255, 255, 0.1);
+   color: var(--gold);
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.3rem; }
+
+    header .container {
+        justify-content: space-between; /* ロゴとボタンを両端に */
+        width: 100%; /* レスポンシブ時はコンテナ幅いっぱい */
+    }
+
+    header nav {
+        order: 3; /* ナビを下へ */
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        background: var(--bg-dark-accent);
+        transition: max-height 0.8s cubic-bezier(0.23, 1, 0.32, 1), /* 少しスムーズなイージング */
+                    padding-top 0.5s ease, padding-bottom 0.5s ease, opacity 0.5s ease;
+        padding: 0;
+        opacity: 0;
+    }
+    header nav.active { /* JSでクラス付与 */
+        max-height: 500px; /* 十分な高さを確保 */
+        padding-top: 10px;
+        padding-bottom: 15px; /* メニュー下の余白 */
+        margin-top: 10px; /* ロゴとメニューボタンの行からのスペース */
+         opacity: 1;
+        box-shadow: var(--shadow-md);
+        border-top: 1px solid var(--border-color);
+    }
+    header nav ul {
+       flex-direction: column;
+       width: 100%;
+    }
+    header nav ul li {
+       margin: 0;
+       text-align: center;
+    }
+    header nav ul li a {
+       display: block;
+       padding: 12px 15px; /* スマホでのタップ領域確保 */
+       border-bottom: 1px solid var(--border-color);
+        border-radius: 0; /* 角丸無くす */
+    }
+     /* 最後の項目は下線なし */
+    header nav ul li:last-child a { border-bottom: none; }
+
+    .menu-toggle {
+        display: block;
+        order: 2; /* 順番入れ替え */
+    }
+
+    .hero .hero-visual img, .hero .hero-visual video { max-width: 85%; }
+     .feature-list, .testimonial-list { grid-template-columns: 1fr; } /* スマホでは1カラム */
+
+     .download-item { flex-direction: column; align-items: flex-start; }
+     .download-item a.btn { align-self: flex-end; } /* ボタンは右寄せ */
+
+     .update-entry:first-child { padding-left: 20px; }
+     .update-entry:first-child::before { width: 4px; }
+ }
